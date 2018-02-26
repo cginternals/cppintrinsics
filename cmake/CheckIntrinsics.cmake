@@ -17,7 +17,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "MSVC")
   # set(AVX512_FLAGS "/arch:AVX512") found no option for msvc
 endif()
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU" OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-  set(SSE_FLAGS "-sse")
+  set(SSE_FLAGS "-msse")
   set(AVX_FLAGS "-mavx")
   set(AVX2_FLAGS "-mavx2")
   set(AVX512_FLAGS "-mavx512f" "-mavx512cd") # xeon processors have more flags

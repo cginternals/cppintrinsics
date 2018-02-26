@@ -13,11 +13,7 @@ set(target AVX512)
 
 # Exit here if required dependencies are not met
 
-if(NOT AVX512_ENABLED)
-    message(STATUS "Intrinsic ${target}: disabled (AVX512 flags not available)")
-	return()
-endif()
-message(STATUS "Intrinsic ${target}: enabled")
+message(STATUS "Intrinsic ${target}")
 
 # Set API export file and macro
 string(MAKE_C_IDENTIFIER ${target} target_id)
@@ -72,7 +68,6 @@ target_link_libraries(${target}
 
 target_compile_definitions(${target}
     INTERFACE
-    CPPINTRINSICS_AVX512_ENABLED
 )
 
 # 
@@ -81,7 +76,6 @@ target_compile_definitions(${target}
 
 target_compile_options(${target}
     INTERFACE
-    ${AVX512_FLAGS}
 )
 
 # 

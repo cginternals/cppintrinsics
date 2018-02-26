@@ -13,11 +13,7 @@ set(target AVX2)
 
 # Exit here if required dependencies are not met
 
-if(NOT AVX2_ENABLED)
-    message(STATUS "Intrinsic ${target}: disabled (AVX2 flags not available)")
-	return()
-endif()
-message(STATUS "Intrinsic ${target}: enabled")
+message(STATUS "Intrinsic ${target}")
 
 # Set API export file and macro
 string(MAKE_C_IDENTIFIER ${target} target_id)
@@ -72,7 +68,6 @@ target_link_libraries(${target}
 
 target_compile_definitions(${target}
     INTERFACE
-    CPPINTRINSICS_AVX2_ENABLED
 )
 
 # 
@@ -81,7 +76,6 @@ target_compile_definitions(${target}
 
 target_compile_options(${target}
     INTERFACE
-    ${AV2X_FLAGS}
 )
 
 # 

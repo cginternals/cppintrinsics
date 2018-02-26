@@ -3,8 +3,6 @@
 # Configuration for all sub-projects
 # 
 
-include(${PROJECT_SOURCE_DIR}/cmake/CheckIntrinsics.cmake)
-
 # 
 # Sub-projects
 # 
