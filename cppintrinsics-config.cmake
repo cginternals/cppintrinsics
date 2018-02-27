@@ -1,4 +1,16 @@
 
+# Exports:
+# cppintrinsics::SSE
+# cppintrinsics::AVX
+# cppintrinsics::AVX2
+# cppintrinsics::AVX512
+#
+# * When linking against these targets, associated CPPINTRINSICS_{MODULE}_ENABLED
+#   macros are passed as compile-time definitions and the required compiler flags
+#   are added.
+# * If the current compiler and architecture doesn't support an intrinsic set,
+#   the according target is not defined.
+
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/CheckIntrinsics.cmake)
 
 
@@ -13,11 +25,11 @@ set(MODULE_NAMES
 
 # Macro to search for a specific module
 macro(find_module FILENAME MODULE_NAME)
-    if(EXISTS "${FILENAME}")
+    if(EXISTS "${FILENAME}" AND "${${MODULE_NAME}_ENABLED}")
         set(MODULE_FOUND TRUE)
         include("${FILENAME}")
         
-        if (TARGET cppintrinsics::${MODULE_NAME} AND "${${MODULE_NAME}_ENABLED}")
+        if (TARGET cppintrinsics::${MODULE_NAME})
             set_target_properties(cppintrinsics::${MODULE_NAME} PROPERTIES
                 INTERFACE_COMPILE_DEFINITIONS "CPPINTRINSICS_${MODULE_NAME}_ENABLED"
                 INTERFACE_COMPILE_OPTIONS "${${MODULE_NAME}_FLAGS}"
